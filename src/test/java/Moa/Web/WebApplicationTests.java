@@ -1,5 +1,6 @@
 package Moa.Web;
 
+import Moa.Web.DTO.TokenInfo;
 import Moa.Web.Entity.Member;
 import Moa.Web.Entity.Tag;
 import Moa.Web.Repository.MemberRepository;
@@ -16,6 +17,7 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
@@ -38,6 +40,11 @@ class WebApplicationTests {
 
 	@Autowired
 	TagService tagService;
+
+	@Test
+	void regenerateTokenTest() throws Exception{
+
+	}
 
 
 	@Test
@@ -113,6 +120,10 @@ class ServiceUnitTest{
 
 		Assertions.assertEquals(app,true);
 
+	}
+
+	@Test
+	void regenerateTokenTest(){
 	}
 
 }

@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .requestMatchers("/members/login").permitAll()
                 .requestMatchers("/members/test").hasRole("USER")
                 .requestMatchers("/members/mytag").hasRole("USER")
+                .requestMatchers("/members/regenerate").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

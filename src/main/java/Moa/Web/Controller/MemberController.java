@@ -2,11 +2,13 @@ package Moa.Web.Controller;
 
 
 import Moa.Web.DTO.MemberLoginRequestDto;
+import Moa.Web.DTO.RegenerateTokenDTO;
 import Moa.Web.DTO.TokenInfo;
 import Moa.Web.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +25,14 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/login")
-    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto){
-        String address = memberLoginRequestDto.getAddress();
-        String password = memberLoginRequestDto.getPassword();
-        TokenInfo tokenInfo = memberService.login(address,password);
+    public ResponseEntity<TokenInfo> login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) throws Exception{
+        return memberService.login(memberLoginRequestDto.getAddress(), memberLoginRequestDto.getPassword());
 
-        return tokenInfo;
+    }
 
+    @PostMapping("/regenerate")
+    public ResponseEntity<TokenInfo> regenerate(@RequestBody RegenerateTokenDTO regenerateTokenDTO) throws Exception{
+        return memberService.regenerateToken(regenerateTokenDTO);
     }
 
     @PostMapping("/test")
